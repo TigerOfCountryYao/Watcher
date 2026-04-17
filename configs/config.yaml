@@ -1,7 +1,9 @@
-﻿model:
-  vocab_size: 50
+model:
   emb_dim: 128
   feat_dim: 128
+  text_model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  text_model_cache_dir: "models/hf"
+  freeze_text_encoder: true
 
 data:
   image_size: 224
@@ -20,6 +22,9 @@ train:
 infer:
   device: "cpu"
   checkpoint: ""
+  capture_mode: "desktop"
   monitor: 1
-  instruction_id: 0
+  window_title: ""
+  instruction: "watch for popup"
   threshold: 0.5
+  sleep_seconds: 0.03

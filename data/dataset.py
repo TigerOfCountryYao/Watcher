@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -17,8 +17,8 @@ class ExcitementDataset(Dataset):
       {
         "prev_frame": "path/to/prev.png",
         "frame": "path/to/current.png",
-        "instruction_id": 1,
-        "target": 0.85
+        "instruction": "watch for popup",
+        "label": 1
       }
     ]
     """
@@ -38,7 +38,7 @@ class ExcitementDataset(Dataset):
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor | str]:
         item = self.samples[idx]
 
         prev_path = item["prev_frame"]
@@ -52,36 +52,41 @@ class ExcitementDataset(Dataset):
         prev_t = preprocess_frame(prev, self.image_size)
         curr_t = preprocess_frame(curr, self.image_size)
 
-        instruction = torch.tensor(item["instruction_id"], dtype=torch.long)
-        target = torch.tensor(item["target"], dtype=torch.float32)
+        instruction = str(item["instruction"])
+        label = torch.tensor(item["label"], dtype=torch.float32)
 
         return {
             "prev_frame": prev_t,
             "frame": curr_t,
             "instruction": instruction,
-            "target": target,
+            "label": label,
         }
 
 
 class RandomExcitementDataset(Dataset):
     """Fallback dataset for quick smoke tests."""
 
-    def __init__(self, size: int = 512, image_size: int = 224, vocab_size: int = 50) -> None:
+    def __init__(self, size: int = 512, image_size: int = 224) -> None:
         self.size = size
         self.image_size = image_size
-        self.vocab_size = vocab_size
+        self.instructions = [
+            "watch for popup",
+            "watch submit button state",
+            "watch icon status",
+            "watch target color",
+        ]
 
     def __len__(self) -> int:
         return self.size
 
-    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor | str]:
         prev = torch.rand(3, self.image_size, self.image_size)
         curr = torch.rand(3, self.image_size, self.image_size)
-        instruction = torch.randint(0, self.vocab_size, (1,), dtype=torch.long).squeeze(0)
-        target = torch.rand((), dtype=torch.float32)
+        instruction = self.instructions[idx % len(self.instructions)]
+        label = torch.randint(0, 2, (), dtype=torch.int64).to(torch.float32)
         return {
             "prev_frame": prev,
             "frame": curr,
             "instruction": instruction,
-            "target": target,
+            "label": label,
         }

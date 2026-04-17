@@ -5,3 +5,4 @@ numpy>=1.24,<3.0
 tqdm>=4.66,<5.0
 pyyaml>=6.0,<7.0
 mss>=9.0,<11.0
+transformers>=5.5,<6.0

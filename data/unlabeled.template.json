@@ -1,0 +1,12 @@
+[
+  {
+    "sample_id": "sample-0001",
+    "prev_frame": "data/raw/frame_pairs/sample-0001_prev.png",
+    "frame": "data/raw/frame_pairs/sample-0001_curr.png",
+    "instruction": "watch for a popup appearing",
+    "metadata": {
+      "scene": "desktop_app",
+      "note": "Captured from the current desktop. Replace instruction or paths as needed."
+    }
+  }
+]

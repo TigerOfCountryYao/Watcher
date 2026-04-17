@@ -1,0 +1,32 @@
+[
+  {
+    "sample_id": "desktop-0003",
+    "prev_frame": "data/raw/frame_pairs/desktop-0003_prev.png",
+    "frame": "data/raw/frame_pairs/desktop-0003_curr.png",
+    "instruction": "watch for a desktop context menu appearing",
+    "metadata": {
+      "scene": "desktop",
+      "capture_type": "fullscreen"
+    }
+  },
+  {
+    "sample_id": "browser-0002",
+    "prev_frame": "data/raw/frame_pairs/browser-0002_prev.png",
+    "frame": "data/raw/frame_pairs/browser-0002_curr.png",
+    "instruction": "watch for visible browser page content changing after scrolling",
+    "metadata": {
+      "scene": "browser",
+      "capture_type": "window"
+    }
+  },
+  {
+    "sample_id": "wechat-0002",
+    "prev_frame": "data/raw/frame_pairs/wechat-0002_prev.png",
+    "frame": "data/raw/frame_pairs/wechat-0002_curr.png",
+    "instruction": "watch for the selected chat item changing in WeChat",
+    "metadata": {
+      "scene": "wechat",
+      "capture_type": "window"
+    }
+  }
+]

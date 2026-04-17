@@ -21,6 +21,7 @@ dist/
 # Runtime outputs
 logs/
 checkpoints/
+models/
 
 # IDE / OS
 .vscode/

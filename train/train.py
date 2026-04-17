@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import sys
@@ -37,7 +37,6 @@ def build_dataloader(cfg: dict, logger):
         dataset = RandomExcitementDataset(
             size=data_cfg["random_size"],
             image_size=data_cfg["image_size"],
-            vocab_size=cfg["model"]["vocab_size"],
         )
         logger.info("Using RandomExcitementDataset: %s samples", len(dataset))
 
@@ -76,14 +75,12 @@ def main() -> None:
         for batch in dataloader:
             prev_frame = batch["prev_frame"].to(device)
             frame = batch["frame"].to(device)
-            instruction = batch["instruction"].to(device)
-            target = batch["target"].to(device)
+            instructions = list(batch["instruction"])
+            label = batch["label"].to(device)
 
             optimizer.zero_grad(set_to_none=True)
-
-            prev_z, _ = model(prev_frame, instruction, None)
-            _, pred = model(frame, instruction, prev_z.detach())
-            loss = F.mse_loss(pred.squeeze(1), target)
+            logits = model(prev_frame, frame, instructions)
+            loss = F.binary_cross_entropy_with_logits(logits.squeeze(1), label)
 
             loss.backward()
             optimizer.step()
