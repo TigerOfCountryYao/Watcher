@@ -1,0 +1,25 @@
+﻿model:
+  vocab_size: 50
+  emb_dim: 128
+  feat_dim: 128
+
+data:
+  image_size: 224
+  annotation_file: ""
+  random_size: 512
+
+train:
+  device: "cpu"
+  epochs: 5
+  batch_size: 8
+  num_workers: 0
+  lr: 0.0003
+  out_dir: "checkpoints"
+  log_file: "logs/train.log"
+
+infer:
+  device: "cpu"
+  checkpoint: ""
+  monitor: 1
+  instruction_id: 0
+  threshold: 0.5
