@@ -4,6 +4,9 @@ model:
   text_model_name: "sentence-transformers/all-MiniLM-L6-v2"
   text_model_cache_dir: "models/hf"
   freeze_text_encoder: true
+  fusion_dropout: 0.1
+  head_hidden_dim: 128
+  head_dropout: 0.1
 
 data:
   image_size: 224
@@ -12,10 +15,24 @@ data:
 
 train:
   device: "cpu"
+  seed: 42
   epochs: 5
   batch_size: 8
   num_workers: 0
   lr: 0.0003
+  weight_decay: 0.01
+  warmup_epochs: 0.5
+  min_lr_ratio: 0.1
+  grad_clip_norm: 1.0
+  val_split: 0.2
+  metric_threshold: 0.5
+  loss: "bce"
+  pos_weight: null
+  focal_gamma: 2.0
+  focal_alpha: null
+  early_stopping_patience: 5
+  early_stopping_min_delta: 0.0
+  use_amp: true
   out_dir: "checkpoints"
   log_file: "logs/train.log"
 
