@@ -13,7 +13,7 @@ class FPNBlock(nn.Module):
         self.output = nn.Sequential(
             nn.Conv2d(out_dim, out_dim, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(out_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
         )
 
     def forward(self, feat: torch.Tensor) -> torch.Tensor:
@@ -53,7 +53,7 @@ class Backbone(nn.Module):
                 name: nn.Sequential(
                     nn.Conv2d(out_dim, out_dim, kernel_size=3, padding=1, bias=False),
                     nn.BatchNorm2d(out_dim),
-                    nn.ReLU(inplace=True),
+                    nn.Hardswish(inplace=True),
                 )
                 for name in self.return_layers
             }

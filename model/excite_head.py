@@ -7,7 +7,7 @@ class ExciteHead(nn.Module):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(dim, hidden_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
             nn.Linear(hidden_dim, 1),
         )
 

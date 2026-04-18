@@ -9,7 +9,7 @@ class FiLM(nn.Module):
         super().__init__()
         self.mlp = nn.Sequential(
             nn.Linear(cond_dim, feat_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
             nn.Linear(feat_dim, feat_dim * 2),
         )
 

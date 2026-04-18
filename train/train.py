@@ -167,10 +167,72 @@ def build_loss_fn(cfg: dict, train_dataset: Dataset) -> nn.Module:
         )
 
     pos_weight_value = cfg["train"].get("pos_weight")
+    if isinstance(pos_weight_value, str) and pos_weight_value.lower() == "auto":
+        pos_weight_value = estimate_pos_weight(train_dataset)
     if pos_weight_value is not None:
         pos_weight = torch.tensor([float(pos_weight_value)], dtype=torch.float32)
         return nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     return nn.BCEWithLogitsLoss()
+
+
+def build_optimizer(model: nn.Module, cfg: dict) -> AdamW:
+    weight_decay = float(cfg["train"].get("weight_decay", 0.01))
+    decay_params: list[nn.Parameter] = []
+    no_decay_params: list[nn.Parameter] = []
+    seen: set[int] = set()
+
+    norm_types = (
+        nn.BatchNorm1d,
+        nn.BatchNorm2d,
+        nn.BatchNorm3d,
+        nn.LayerNorm,
+        nn.GroupNorm,
+        nn.InstanceNorm1d,
+        nn.InstanceNorm2d,
+        nn.InstanceNorm3d,
+        nn.Embedding,
+    )
+
+    for module in model.modules():
+        for name, param in module.named_parameters(recurse=False):
+            if not param.requires_grad or id(param) in seen:
+                continue
+            seen.add(id(param))
+
+            if name.endswith("bias") or isinstance(module, norm_types):
+                no_decay_params.append(param)
+            elif isinstance(module, (nn.Linear, nn.Conv1d, nn.Conv2d, nn.Conv3d)):
+                decay_params.append(param)
+            else:
+                no_decay_params.append(param)
+
+    return AdamW(
+        [
+            {"params": decay_params, "weight_decay": weight_decay},
+            {"params": no_decay_params, "weight_decay": 0.0},
+        ],
+        lr=cfg["train"]["lr"],
+    )
+
+
+def collect_label_stats(dataset: Dataset) -> tuple[int, int]:
+    positives = 0
+    negatives = 0
+    for idx in range(len(dataset)):
+        sample = dataset[idx]
+        label_value = float(sample["label"])
+        if label_value >= 0.5:
+            positives += 1
+        else:
+            negatives += 1
+    return positives, negatives
+
+
+def estimate_pos_weight(dataset: Dataset) -> float:
+    positives, negatives = collect_label_stats(dataset)
+    if positives == 0:
+        return 1.0
+    return max(1.0, negatives / positives)
 
 
 def compute_metrics(logits: torch.Tensor, labels: torch.Tensor, threshold: float) -> EpochMetrics:
@@ -302,14 +364,11 @@ def main() -> None:
 
     dataset = build_dataset(cfg, logger)
     train_dataset, val_dataset = split_dataset(dataset, cfg)
+    train_positives, train_negatives = collect_label_stats(train_dataset)
     train_loader = build_dataloader(train_dataset, cfg, shuffle=True, device=device)
     val_loader = build_dataloader(val_dataset, cfg, shuffle=False, device=device)
 
-    optimizer = AdamW(
-        model.parameters(),
-        lr=cfg["train"]["lr"],
-        weight_decay=float(cfg["train"].get("weight_decay", 0.01)),
-    )
+    optimizer = build_optimizer(model, cfg)
     loss_fn = build_loss_fn(cfg, train_dataset)
     if isinstance(loss_fn, nn.BCEWithLogitsLoss) and loss_fn.pos_weight is not None:
         loss_fn = nn.BCEWithLogitsLoss(pos_weight=loss_fn.pos_weight.to(device))
@@ -331,9 +390,12 @@ def main() -> None:
     autocast_device = device.type if device.type in ("cuda", "cpu") else "cpu"
 
     logger.info(
-        "Training setup | train_samples=%s val_samples=%s device=%s use_amp=%s",
+        "Training setup | train_samples=%s val_samples=%s train_pos=%s train_neg=%s suggested_pos_weight=%.4f device=%s use_amp=%s",
         len(train_dataset),
         len(val_dataset),
+        train_positives,
+        train_negatives,
+        estimate_pos_weight(train_dataset),
         device,
         use_amp,
     )

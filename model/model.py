@@ -15,13 +15,13 @@ class ScaleFusionBlock(nn.Module):
         self.proj = nn.Sequential(
             nn.Conv2d(in_dim, out_dim, kernel_size=1, bias=False),
             nn.BatchNorm2d(out_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
         )
         self.film = FiLM(feat_dim=out_dim, cond_dim=cond_dim)
         self.refine = nn.Sequential(
             nn.Conv2d(out_dim, out_dim, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(out_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
             nn.Dropout2d(dropout),
         )
 
@@ -37,12 +37,12 @@ class SpatialEventHead(nn.Module):
         self.event_map_head = nn.Sequential(
             nn.Conv2d(dim, hidden_dim, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(hidden_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
             nn.Conv2d(hidden_dim, 1, kernel_size=1),
         )
         self.score_head = nn.Sequential(
             nn.Linear(dim, hidden_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
             nn.Dropout(dropout),
             nn.Linear(hidden_dim, 1),
         )
@@ -103,7 +103,7 @@ class ExcitementModel(nn.Module):
         self.fuse = nn.Sequential(
             nn.Conv2d(feat_dim * 3, feat_dim, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(feat_dim),
-            nn.ReLU(inplace=True),
+            nn.Hardswish(inplace=True),
         )
         self.head = SpatialEventHead(
             dim=feat_dim,

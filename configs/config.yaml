@@ -28,7 +28,7 @@ train:
   val_split: 0.2
   metric_threshold: 0.5
   loss: "bce"
-  pos_weight: null
+  pos_weight: "auto"
   focal_gamma: 2.0
   focal_alpha: null
   use_event_map_aux_loss: false
