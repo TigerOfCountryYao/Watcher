@@ -18,7 +18,8 @@ class ExcitementDataset(Dataset):
         "prev_frame": "path/to/prev.png",
         "frame": "path/to/current.png",
         "instruction": "watch for popup",
-        "label": 1
+        "label": 1,
+        "event_map": "path/to/event_map.png"
       }
     ]
     """
@@ -54,13 +55,23 @@ class ExcitementDataset(Dataset):
 
         instruction = str(item["instruction"])
         label = torch.tensor(item["label"], dtype=torch.float32)
-
-        return {
+        sample: dict[str, torch.Tensor | str] = {
             "prev_frame": prev_t,
             "frame": curr_t,
             "instruction": instruction,
             "label": label,
         }
+        if "event_map" in item and item["event_map"]:
+            event_map_img = cv2.imread(str(item["event_map"]), cv2.IMREAD_GRAYSCALE)
+            if event_map_img is None:
+                raise FileNotFoundError(f"failed to read event_map: {item['event_map']}")
+            event_map = cv2.resize(
+                event_map_img,
+                (self.image_size, self.image_size),
+                interpolation=cv2.INTER_NEAREST,
+            )
+            sample["event_map"] = torch.from_numpy(event_map).float().unsqueeze(0) / 255.0
+        return sample
 
 
 class RandomExcitementDataset(Dataset):

@@ -1,6 +1,7 @@
 model:
   emb_dim: 128
   feat_dim: 128
+  backbone_pretrained: false
   text_model_name: "sentence-transformers/all-MiniLM-L6-v2"
   text_model_cache_dir: "models/hf"
   freeze_text_encoder: true
@@ -30,6 +31,8 @@ train:
   pos_weight: null
   focal_gamma: 2.0
   focal_alpha: null
+  use_event_map_aux_loss: false
+  event_map_aux_weight: 0.0
   early_stopping_patience: 5
   early_stopping_min_delta: 0.0
   use_amp: true

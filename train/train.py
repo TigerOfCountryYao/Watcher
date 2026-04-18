@@ -51,6 +51,29 @@ class BinaryFocalLoss(nn.Module):
         return focal.mean()
 
 
+def compute_event_map_loss(
+    aux_outputs: dict[str, torch.Tensor] | None,
+    batch: dict,
+    cfg: dict,
+) -> torch.Tensor | None:
+    if not bool(cfg["train"].get("use_event_map_aux_loss", False)):
+        return None
+    if aux_outputs is None or "event_map_logits" not in aux_outputs:
+        return None
+    if "event_map" not in batch:
+        return None
+
+    event_map_target = batch["event_map"]
+    event_map_logits = aux_outputs["event_map_logits"]
+    event_map_target = event_map_target.to(event_map_logits.device, non_blocking=True)
+    event_map_target = F.interpolate(
+        event_map_target,
+        size=event_map_logits.shape[-2:],
+        mode="nearest",
+    )
+    return F.binary_cross_entropy_with_logits(event_map_logits, event_map_target)
+
+
 def load_config(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
@@ -182,6 +205,7 @@ def evaluate(
     threshold: float,
     use_amp: bool,
     loss_fn: nn.Module,
+    cfg: dict,
 ) -> EpochMetrics:
     model.eval()
     total_loss = 0.0
@@ -200,8 +224,18 @@ def evaluate(
             label = batch["label"].to(device, non_blocking=True)
 
             with torch.amp.autocast(device_type=autocast_device, enabled=use_amp):
-                logits = model(prev_frame, frame, instructions).squeeze(1)
+                need_aux = bool(cfg["train"].get("use_event_map_aux_loss", False))
+                outputs = model(prev_frame, frame, instructions, return_aux=need_aux)
+                if need_aux:
+                    logits, aux_outputs = outputs
+                else:
+                    logits = outputs
+                    aux_outputs = None
+                logits = logits.squeeze(1)
                 loss = loss_fn(logits, label)
+                aux_loss = compute_event_map_loss(aux_outputs, batch, cfg)
+                if aux_loss is not None:
+                    loss = loss + float(cfg["train"].get("event_map_aux_weight", 0.0)) * aux_loss
 
             probs = torch.sigmoid(logits)
             preds = (probs >= threshold).to(torch.int64)
@@ -316,8 +350,18 @@ def main() -> None:
 
             optimizer.zero_grad(set_to_none=True)
             with torch.amp.autocast(device_type=autocast_device, enabled=use_amp):
-                logits = model(prev_frame, frame, instructions).squeeze(1)
+                need_aux = bool(cfg["train"].get("use_event_map_aux_loss", False))
+                outputs = model(prev_frame, frame, instructions, return_aux=need_aux)
+                if need_aux:
+                    logits, aux_outputs = outputs
+                else:
+                    logits = outputs
+                    aux_outputs = None
+                logits = logits.squeeze(1)
                 loss = loss_fn(logits, label)
+                aux_loss = compute_event_map_loss(aux_outputs, batch, cfg)
+                if aux_loss is not None:
+                    loss = loss + float(cfg["train"].get("event_map_aux_weight", 0.0)) * aux_loss
 
             scaler.scale(loss).backward()
 
@@ -341,6 +385,7 @@ def main() -> None:
             threshold=threshold,
             use_amp=use_amp,
             loss_fn=loss_fn,
+            cfg=cfg,
         )
 
         logger.info(

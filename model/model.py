@@ -61,6 +61,7 @@ class ExcitementModel(nn.Module):
         self,
         emb_dim: int = 128,
         feat_dim: int = 128,
+        backbone_pretrained: bool = False,
         text_model_name: str = "sentence-transformers/all-MiniLM-L6-v2",
         freeze_text_encoder: bool = True,
         text_model_cache_dir: str | None = None,
@@ -69,7 +70,7 @@ class ExcitementModel(nn.Module):
         head_dropout: float = 0.1,
     ) -> None:
         super().__init__()
-        self.encoder = Backbone(out_dim=feat_dim)
+        self.encoder = Backbone(out_dim=feat_dim, pretrained=backbone_pretrained)
         self.text_encoder = TextEncoder(
             model_name=text_model_name,
             output_dim=emb_dim,
@@ -77,26 +78,22 @@ class ExcitementModel(nn.Module):
             cache_dir=text_model_cache_dir,
         )
 
-        stage1_dim = self.encoder.feature_dims["stage1"]
-        stage2_dim = self.encoder.feature_dims["stage2"]
-        stage3_dim = self.encoder.feature_dims["stage3"]
-
         self.scale_fusion = nn.ModuleDict(
             {
                 "stage1": ScaleFusionBlock(
-                    in_dim=stage1_dim * 2,
+                    in_dim=feat_dim * 2,
                     out_dim=feat_dim,
                     cond_dim=emb_dim,
                     dropout=fusion_dropout,
                 ),
                 "stage2": ScaleFusionBlock(
-                    in_dim=stage2_dim * 2,
+                    in_dim=feat_dim * 2,
                     out_dim=feat_dim,
                     cond_dim=emb_dim,
                     dropout=fusion_dropout,
                 ),
                 "stage3": ScaleFusionBlock(
-                    in_dim=stage3_dim * 2,
+                    in_dim=feat_dim * 2,
                     out_dim=feat_dim,
                     cond_dim=emb_dim,
                     dropout=fusion_dropout,
