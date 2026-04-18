@@ -1,0 +1,107 @@
+[
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-006",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/006.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/007.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 6,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-008",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/008.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/009.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 8,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000o150wkqsoy6di-pair-000",
+    "prev_frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/000.png",
+    "frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/001.png",
+    "instruction": "Save the current presentation as a PowerPoint Template (.potx).",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000o150wkqsoy6di",
+      "taskId": "cm9r8thiq00092u0vgivifq0p",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 0,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000o150wkqsoy6di-pair-001",
+    "prev_frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/001.png",
+    "frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/002.png",
+    "instruction": "Save the current presentation as a PowerPoint Template (.potx).",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000o150wkqsoy6di",
+      "taskId": "cm9r8thiq00092u0vgivifq0p",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 1,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000o150wkqsoy6di-pair-003",
+    "prev_frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/003.png",
+    "frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/004.png",
+    "instruction": "Save the current presentation as a PowerPoint Template (.potx).",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000o150wkqsoy6di",
+      "taskId": "cm9r8thiq00092u0vgivifq0p",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 3,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-001",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/001.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/002.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 1,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-007",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/007.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/008.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 7,
+      "capture_source": "screenshots"
+    }
+  }
+]

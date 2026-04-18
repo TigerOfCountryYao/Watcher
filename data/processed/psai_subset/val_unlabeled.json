@@ -1,0 +1,77 @@
+[
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-000",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/000.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/001.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 0,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9qi2tb9005yx60wy3ua8a2v-pair-012",
+    "prev_frame": "data/external/psai_subset/003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/012.png",
+    "frame": "data/external/psai_subset/003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/013.png",
+    "instruction": "Use Google Lens to identify and find where to buy a product online.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9qi2tb9005yx60wy3ua8a2v",
+      "taskId": "cm9qi2sx50008x60w2n4mxtks",
+      "category": "BROWSER_TASK",
+      "application_website": "Google Lens",
+      "pair_index": 12,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-013",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/013.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/014.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 13,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000o150wkqsoy6di-pair-004",
+    "prev_frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/004.png",
+    "frame": "data/external/psai_subset/002_cm9u1bjq8000o150wkqsoy6di/screenshots/005.png",
+    "instruction": "Save the current presentation as a PowerPoint Template (.potx).",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000o150wkqsoy6di",
+      "taskId": "cm9r8thiq00092u0vgivifq0p",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 4,
+      "capture_source": "screenshots"
+    }
+  },
+  {
+    "sample_id": "cm9u1bjq8000s150wo0mobsnv-pair-005",
+    "prev_frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/005.png",
+    "frame": "data/external/psai_subset/001_cm9u1bjq8000s150wo0mobsnv/screenshots/006.png",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "metadata": {
+      "source_dataset": "anaisleila/computer-use-data-psai",
+      "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+      "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+      "category": "COMPUTER_TASK",
+      "application_website": "Microsoft PowerPoint",
+      "pair_index": 5,
+      "capture_source": "screenshots"
+    }
+  }
+]

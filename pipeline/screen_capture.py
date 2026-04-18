@@ -52,12 +52,16 @@ class ScreenCapture:
             ctypes.c_void_p,
             wintypes.DWORD,
         ]
+        self.last_window_title: str | None = None
+        self.last_region: dict[str, int] | None = None
 
     def get_frame(self) -> np.ndarray:
         if self.mode == "desktop":
             region = self.sct.monitors[0]
+            self.last_window_title = None
         elif self.mode == "monitor":
             region = self.sct.monitors[self.monitor]
+            self.last_window_title = None
         elif self.mode == "window":
             hwnd = self._find_window(self.window_title)
             if hwnd is None:
@@ -65,9 +69,11 @@ class ScreenCapture:
             self.user32.ShowWindow(hwnd, SW_RESTORE)
             self.user32.SetForegroundWindow(hwnd)
             region = self._get_window_region(hwnd)
+            self.last_window_title = self._get_window_text(hwnd)
         else:
             raise ValueError(f"unsupported capture mode: {self.mode}")
 
+        self.last_region = dict(region)
         img = np.array(self.sct.grab(region))
         return cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 
@@ -97,6 +103,14 @@ class ScreenCapture:
 
         self.user32.EnumWindows(enum_proc, 0)
         return matches[0] if matches else None
+
+    def _get_window_text(self, hwnd: int) -> str:
+        length = self.user32.GetWindowTextLengthW(hwnd)
+        if length <= 0:
+            return ""
+        buffer = ctypes.create_unicode_buffer(length + 1)
+        self.user32.GetWindowTextW(hwnd, buffer, length + 1)
+        return buffer.value
 
     def _get_window_region(self, hwnd: int) -> dict[str, int]:
         rect = RECT()

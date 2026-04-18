@@ -14,6 +14,11 @@ class FiLM(nn.Module):
         )
 
     def forward(self, feat: torch.Tensor, cond: torch.Tensor) -> torch.Tensor:
+        """
+        feat: (B, C, H, W)
+        cond: (B, cond_dim)
+        output: (B, C, H, W)
+        """
         gb = self.mlp(cond)
         gamma, beta = gb.chunk(2, dim=-1)
 

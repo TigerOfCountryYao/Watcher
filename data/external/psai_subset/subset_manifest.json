@@ -1,0 +1,119 @@
+[
+  {
+    "unique_data_id": "cm9u1bjq8000s150wo0mobsnv",
+    "taskId": "cm9r8thiq000b2u0vwzzq6ym5",
+    "task_name": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "instruction": "Use Design Ideas in PowerPoint to get slide layout suggestions.",
+    "category": "COMPUTER_TASK",
+    "subCategory": [
+      "Presentations"
+    ],
+    "application_website": "Microsoft PowerPoint",
+    "tags": [],
+    "benchmark": "Proprietary",
+    "appType": "SINGLE_APP",
+    "difficulty": "MEDIUM",
+    "os": "CROSS_PLATFORM",
+    "requires_login": "",
+    "completedAt": "2025-05-06 14:49:19.460",
+    "video_file": "videos/cm9u1bjq8000s150wo0mobsnv.mp4",
+    "dom_snaps_file": "",
+    "local_dir": "001_cm9u1bjq8000s150wo0mobsnv",
+    "local_screenshots": [
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/000.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/001.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/002.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/003.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/004.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/005.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/006.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/007.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/008.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/009.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/010.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/011.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/012.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/013.png",
+      "001_cm9u1bjq8000s150wo0mobsnv/screenshots/014.png"
+    ],
+    "local_events": "001_cm9u1bjq8000s150wo0mobsnv/events.json"
+  },
+  {
+    "unique_data_id": "cm9u1bjq8000o150wkqsoy6di",
+    "taskId": "cm9r8thiq00092u0vgivifq0p",
+    "task_name": "Save the current presentation as a PowerPoint Template (.potx).",
+    "instruction": "Save the current presentation as a PowerPoint Template (.potx).",
+    "category": "COMPUTER_TASK",
+    "subCategory": [
+      "Presentations"
+    ],
+    "application_website": "Microsoft PowerPoint",
+    "tags": [],
+    "benchmark": "Proprietary",
+    "appType": "SINGLE_APP",
+    "difficulty": "MEDIUM",
+    "os": "CROSS_PLATFORM",
+    "requires_login": "",
+    "completedAt": "2025-04-25 11:16:40.595",
+    "video_file": "videos/cm9u1bjq8000o150wkqsoy6di.mp4",
+    "dom_snaps_file": "",
+    "local_dir": "002_cm9u1bjq8000o150wkqsoy6di",
+    "local_screenshots": [
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/000.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/001.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/002.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/003.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/004.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/005.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/006.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/007.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/008.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/009.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/010.png",
+      "002_cm9u1bjq8000o150wkqsoy6di/screenshots/011.png"
+    ],
+    "local_events": "002_cm9u1bjq8000o150wkqsoy6di/events.json"
+  },
+  {
+    "unique_data_id": "cm9qi2tb9005yx60wy3ua8a2v",
+    "taskId": "cm9qi2sx50008x60w2n4mxtks",
+    "task_name": "Use Google Lens to identify and find where to buy a product online.",
+    "instruction": "Use Google Lens to identify and find where to buy a product online.",
+    "category": "BROWSER_TASK",
+    "subCategory": [
+      "Shopping & E-commerce"
+    ],
+    "application_website": "Google Lens",
+    "tags": [
+      "Information Retrieval & Analysis:Search",
+      "Information Retrieval & Analysis:Extraction"
+    ],
+    "benchmark": "Proprietary",
+    "appType": "MULTI_APP",
+    "difficulty": "MEDIUM",
+    "os": "CROSS_PLATFORM",
+    "requires_login": "no",
+    "completedAt": "2025-04-24 19:23:06.853",
+    "video_file": "videos/cm9qi2tb9005yx60wy3ua8a2v.mp4",
+    "dom_snaps_file": "",
+    "local_dir": "003_cm9qi2tb9005yx60wy3ua8a2v",
+    "local_screenshots": [
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/000.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/001.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/002.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/003.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/004.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/005.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/006.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/007.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/008.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/009.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/010.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/011.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/012.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/013.png",
+      "003_cm9qi2tb9005yx60wy3ua8a2v/screenshots/014.png"
+    ],
+    "local_events": "003_cm9qi2tb9005yx60wy3ua8a2v/events.json"
+  }
+]
